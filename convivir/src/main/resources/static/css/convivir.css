@@ -1,0 +1,48 @@
+@charset "UTF-8";
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana;
+    color: #0c0505
+}
+
+#logo {
+    width: 600px;
+    min-width: 500px;
+}
+
+#logo img {
+    width: 100%;
+    max-width: 600px;
+    min-width: 400px;
+    height: auto;
+}
+
+#foto img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto
+}
+
+.container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card {
+    color: darkblue;
+}
+
+#contenido {
+    background-color: darkgray;
+    border: solid #008037 2px;
+}
+
+#cabecera {
+    background-color: whitesmoke;
+    border: solid #008037 2px;
+}
