@@ -21,21 +21,23 @@ import edu.cientifica.convivir.model.Usuario;
 @RequestMapping("/usuario")
 public class UsuarioController {
 	
-
 	@GetMapping("/")
 	public String obtenerListaUsuario() {
+		
 		return "";
 	}
 	
 
 	@GetMapping("/{id}")
 	public String obtenerUsuarioPorId(@PathVariable (name = "id") int id) {
+		
 		return "";
 	}
 	
 	@PostMapping("/")
 	public String crearUsuario(@ModelAttribute("usuario") Usuario usuario, BindingResult errors,
 			Model model, RedirectAttributes atribute) {
+		
 		return "";
 	}
 	
@@ -43,13 +45,17 @@ public class UsuarioController {
 	public String actualizarUsuarioPorId(@PathVariable (name = "id") int id) {
 		
 		return "";
-		
 	}
 	
 	@DeleteMapping("/{id}")
 	public String eliminarUsuarioPorId(@PathVariable (name = "id") int id) {
 		
 		return "";
+	}
 	
+	@GetMapping("/nuevo")
+	public String nuevoUsuario() {
+		
+		return "";
 	}
 }
