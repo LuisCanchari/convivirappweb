@@ -1,3 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.UInmobiliariaMapper"></mapper>
+<mapper
+	namespace="edu.cientifica.convivir.mappers.UInmobiliariaMapper">
+	<resultMap id="uinmobiliariaResultMap"
+		type="edu.cientifica.convivir.model.UInmobiliaria">
+		<id column="id_uinmobiliaria" property="id" />
+		<result column="nombre_corto" property="nombreCorto" />
+		<result column="nombre_largo" property="nombreLargo" />
+		<result column="des_direccion" property="direccion" />
+		<result column="ubigeo" property="codigoUbigeo" />
+		<result column="latitud_map" property="mapaLatitud" />
+		<result column="longitud_map" property="mapaLongitud" />
+		<association column="id_usuario" property="administrador"
+			javaType="edu.cientifica.convivir.model.Administrador"
+			resultMap="edu.cientifica.convivir.mappers.AdministradorMapper.admnistradorResultMap" />
+	</resultMap>
+
+	<insert id="insertUInmobiliaria"
+		parameterType="edu.cientifica.convivir.model.UInmobiliaria">
+		INSERT INTO db_convivir5.unidadinmobiliaria
+		(id_uinmobiliaria,
+		nombre_corto,
+		nombre_largo,
+		des_direccion,
+		ubigeo,
+		latitud_map,
+		longitud_map)
+		VALUES
+		(#{id},
+		#{nombreCorto},
+		#{nombreLargo},
+		#{direccion},
+		#{codigoUbigeo},
+		#{mapaLatitud},
+		#{mapaLongitud});
+	</insert>
+
+	<select id="selectNewId" resultType="int">
+		SELECT
+		IFNULL(max(id_uinmobiliaria), 0)+1 as id from
+		db_convivir5.unidadinmobiliaria
+	</select>
+
+	<insert id="insertAdministrador"
+		parameterType="edu.cientifica.convivir.model.UInmobiliaria">
+		INSERT INTO db_convivir5.perfil
+		(id_uinmobiliaria,
+		id_usuario,
+		id_tipo_perfil)
+		VALUES
+		(#{id},
+		#{administrador.id},
+		"1");
+	</insert>
+
+
+
+</mapper>

@@ -1,49 +1,70 @@
 package edu.cientifica.convivir.serviceimpl;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.cientifica.convivir.mappers.PersonaMapper;
 import edu.cientifica.convivir.model.Persona;
 import edu.cientifica.convivir.service.PersonaService;
 
 @Service
 public class PersonaServiceImpl implements PersonaService{
+	protected final Log LOG = LogFactory.getLog(this.getClass());
 	
+	@Autowired
+	private PersonaMapper personaMapper;
+
+	@Transactional
 	@Override
-	public int registraPersona(Persona persona) {
-		// TODO Auto-generated method stub
-		System.out.println("Se envio datos para registrar");
+	public Persona registrarPersona(Persona persona) {
 		
-		return 0;
+		if (persona.getId()==null){
+			persona.setId(personaMapper.newIdPersona());
+		}
 		
+		if (personaMapper.insertPersona(persona)<1) {
+			persona = null;
+		}
+		LOG.info("registrarPersona: "+persona);
+		return persona;
 	}
 
 	@Override
-	public int modificarPersona(Persona persona) {
+	public Persona modificarPersona(Persona persona) {
 		// TODO Auto-generated method stub
-		System.out.println("Se envio datos para modificar");
-		return 0;
+		return null;
 	}
 
 	@Override
-	public int eliminarPersona(Persona persona) {
+	public Boolean eliminarPersona(int id) {
 		// TODO Auto-generated method stub
-		System.out.println("Se envio datos para eliminar");
-		return 0;
+		return null;
 	}
 
 	@Override
-	public Persona obtnerPersonaPorId(Integer id) {
+	public Persona obtenerPersonaPorId(Integer id) {
 		// TODO Auto-generated method stub
-		System.out.println("Se envio id para consultar persona");
 		return null;
 	}
 
 	@Override
 	public Persona obtenerPersonaPorDocumento(String tipo, String numero) {
-		System.out.println("Se envio tipo y numero de documeto para consultar persona");
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Persona> obtenerListaPersona() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	
 
 }

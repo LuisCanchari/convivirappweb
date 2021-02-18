@@ -38,8 +38,9 @@ body {
 }
 
 #contenido {
-    background-color: darkgray;
+    background-color: whitesmoke;
     border: solid #008037 2px;
+    /*padding: 10px;*/
 }
 
 #cabecera {

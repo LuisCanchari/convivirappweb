@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Usuario Nuevo</title>
+<title>Inmobiliaria Nuevo</title>
 <!--css-->
 <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
 <link rel="stylesheet" th:href="@{/css/convivir.css}" href="../css/convivir.css">
@@ -25,7 +25,6 @@
 
 <!--awesome-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 
 
 </head>
@@ -51,97 +50,80 @@
 
 	<section>
 		<div class="container" id="contenido">
+			<div class="row">
+				<div class="col-lg-4 ">
 
-			<form action="#" th:action="@{/usuario/registrar}" method="post" th:object="${usuario}">
-				<div class="row">
-					<div class="col-lg-4 ">
- 
-					<img src="../static/img/registro.jpg" th:src="@{/img/registro.jpg}" alt="foto registro"  class="img-fluid">
+					<img src="../static/img/registro.jpg" th:src="@{/img/registro.jpg}" alt="foto registro" class="img-fluid">
 
-
-					</div>
-					<div class=col-lg-8>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="nombre" placeholder="Nombre"
-									required="required"
-									th:field="*{nombre}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="primerapellido"
-									placeholder="Primer Apellido" required="required"
-									th:field="*{primerApellido}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="segundoapellido"
-									placeholder="Segundo Apellido" required="required"
-									th:field="*{segundoApellido}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="tipodocumento"
-									placeholder="Tipo Documento" required="required"
-									th:field="*{tipoDocumento}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="numerodocumento"
-									placeholder="Numero Documento" required="required"
-									th:field="*{numeroDocumento}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="email" class="form-control" name="correo" placeholder="Correo electronico"
-									required="required"
-									th:field="*{correo}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="username" placeholder="Usuario"
-									required="required"
-									th:field="*{username}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="password" class="form-control" name="password"
-									placeholder="Password" required="required"
-									th:field="*{password}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="submit" class="btn btn-success btn-block"  value="Grabar">
-							</div>
-						</div>
-					</div>
 				</div>
-			</form>
+				
+				<div class=col-lg-8>
+				<h3>Datos de la Inmobiliaria</h3>
+
+					<form action="#" th:action="@{/uinmobiliaria/registrar}" method="post" th:object="${uinmobiliaria}">
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="nombrecorto"
+									placeholder="Nombre Corto" required="required" th:field="*{nombreCorto}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="nombrelargo"
+									placeholder="Nombre Largo" required="required" th:field="*{nombreLargo}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="direccion"
+									placeholder="Direccion" required="required" th:field="*{direccion}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> <input type="text" class="form-control" name="codigoubigeo"
+									placeholder="Codigo Ubigeo" required="required" th:field="*{codigoUbigeo}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="mapalatitud"
+									placeholder="Mapa Latitud" required="required" th:field="*{mapaLatitud}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="mapalongitud"
+									placeholder="Mapa Longitud" required="required" th:field="*{mapaLongitud}">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" th:field="*{administrador.id}">
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<div class="input-group">
+								<input type="submit" class="btn btn-success btn-block" value="Grabar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</section>
 

@@ -1,8 +1,9 @@
 package edu.cientifica.convivir.mappers;
 
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
-@Service
+
+@Mapper
 public interface ResidenteMapper {
 
 }

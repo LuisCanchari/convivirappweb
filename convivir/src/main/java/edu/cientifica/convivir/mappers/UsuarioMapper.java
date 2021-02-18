@@ -1,8 +1,12 @@
 package edu.cientifica.convivir.mappers;
 
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
-@Service
+import edu.cientifica.convivir.model.Usuario;
+
+
+@Mapper
 public interface UsuarioMapper {
+	public Usuario selectUsuarioPorUsername(String username);
 
 }

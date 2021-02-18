@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Usuario Nuevo</title>
+<title>Administrador Nuevo</title>
 <!--css-->
 <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
 <link rel="stylesheet" th:href="@{/css/convivir.css}" href="../css/convivir.css">
@@ -51,32 +51,27 @@
 
 	<section>
 		<div class="container" id="contenido">
+			<div class="row">
 
-			<form action="#" th:action="@{/usuario/registrar}" method="post" th:object="${usuario}">
-				<div class="row">
-					<div class="col-lg-4 ">
- 
-					<img src="../static/img/registro.jpg" th:src="@{/img/registro.jpg}" alt="foto registro"  class="img-fluid">
-
-
-					</div>
-					<div class=col-lg-8>
-
+				<div class="col-lg-4 ">
+					<img src="../static/img/registro.jpg" th:src="@{/img/registro.jpg}" alt="foto registro" class="img-fluid">
+				</div>
+				<div class=col-lg-8>
+				<h3>Datos de usuario Administrador</h3>
+					<form action="#" th:action="@{/administrador/registrar}" method="post" th:object="${administrador}">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
 								<input type="text" class="form-control" name="nombre" placeholder="Nombre"
-									required="required"
-									th:field="*{nombre}">
+									required="required" th:field="*{nombre}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="primerapellido"
-									placeholder="Primer Apellido" required="required"
-									th:field="*{primerApellido}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span>
+								 <input type="text" class="form-control" name="primerapellido"
+									placeholder="Primer Apellido" required="required" th:field="*{primerApellido}">
 							</div>
 						</div>
 
@@ -84,64 +79,55 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
 								<input type="text" class="form-control" name="segundoapellido"
-									placeholder="Segundo Apellido" required="required"
-									th:field="*{segundoApellido}">
+									placeholder="Segundo Apellido" required="required" th:field="*{segundoApellido}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="tipodocumento"
-									placeholder="Tipo Documento" required="required"
-									th:field="*{tipoDocumento}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="tipodocumento"
+									placeholder="Tipo Documento" required="required" th:field="*{tipoDocumento}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="numerodocumento"
-									placeholder="Numero Documento" required="required"
-									th:field="*{numeroDocumento}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="numerodocumento"
+									placeholder="Numero Documento" required="required" th:field="*{numeroDocumento}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="email" class="form-control" name="correo" placeholder="Correo electronico"
-									required="required"
-									th:field="*{correo}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="email" class="form-control" name="correo"
+									placeholder="Correo electronico" required="required" th:field="*{correo}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="text" class="form-control" name="username" placeholder="Usuario"
-									required="required"
-									th:field="*{username}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
+									placeholder="Usuario" required="required" th:field="*{username}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
-								<input type="password" class="form-control" name="password"
-									placeholder="Password" required="required"
-									th:field="*{password}">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="password" class="form-control" name="password"
+									placeholder="Password" required="required" th:field="*{password}">
 							</div>
 						</div>
+						
+						
 
 						<div class="form-group">
 							<div class="input-group">
-								<input type="submit" class="btn btn-success btn-block"  value="Grabar">
+								<input type="submit" class="btn btn-success btn-block" value="Grabar">
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</section>
 

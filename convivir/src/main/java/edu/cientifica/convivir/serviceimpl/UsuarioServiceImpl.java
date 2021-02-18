@@ -1,20 +1,31 @@
 package edu.cientifica.convivir.serviceimpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.cientifica.convivir.mappers.UsuarioMapper;
 import edu.cientifica.convivir.model.Usuario;
 import edu.cientifica.convivir.service.UsuarioService;
 
+
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+	
+	@Autowired
+	private UsuarioMapper usuarioMapper;
 
 	@Override
-	public Boolean validarUsuario(String username, String password) {
-		
-		//validacion inicial
-		return username.equals("Juan") && password.equals("Clave");
-		
-		//validacion con bd
+	public Boolean validarUsuario(Usuario usuario) {
+		Usuario usuarioDb;
+		usuarioDb = usuarioMapper.selectUsuarioPorUsername(usuario.getUsername());
+		Boolean valido = false;
+		if (usuarioDb!=null) {
+			if (usuarioDb.getPassword()==usuario.getPassword()) {
+				valido=true;
+			}
+		}
+		return valido;
 		
 	}
 

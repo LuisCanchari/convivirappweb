@@ -27,19 +27,7 @@ public class InicioController {
 		return "inicio_login";
 	}
 
-	@RequestMapping("/validar")
-	public String validarUsuario(@RequestParam(name = "username") String user,
-			@RequestParam(name = "password") String pass) {
-
-		if (usuarioService.validarUsuario(user, pass)) {
-			return "inicio_principal";
-
-		} else {
-			return "inicio_login";
-
-		}
-	}
-
+	
 	@RequestMapping("/salir")
 	public String salir() {
 
