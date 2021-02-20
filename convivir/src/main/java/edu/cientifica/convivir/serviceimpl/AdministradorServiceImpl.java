@@ -10,8 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.cientifica.convivir.mappers.AdministradorMapper;
 import edu.cientifica.convivir.mappers.PersonaMapper;
+import edu.cientifica.convivir.mappers.UInmobiliariaMapper;
+import edu.cientifica.convivir.mappers.UsuarioMapper;
 import edu.cientifica.convivir.model.Administrador;
 import edu.cientifica.convivir.model.Persona;
+import edu.cientifica.convivir.model.UInmobiliaria;
+import edu.cientifica.convivir.model.Usuario;
 import edu.cientifica.convivir.service.AdministradorService;
 import edu.cientifica.convivir.service.PersonaService;
 
@@ -20,50 +24,38 @@ public class AdministradorServiceImpl implements AdministradorService{
 	protected final Log LOG = LogFactory.getLog(this.getClass());
 	
 	@Autowired 
-	AdministradorMapper administradorMapper;
+	UInmobiliariaMapper uinmobiliariaMapper;
 	
-	@Autowired 
-	PersonaService personaService;
+	@Autowired
+	private AdministradorMapper administradorMapper;
+	
+	@Autowired
+	private UsuarioMapper usuarioMapper;
 
-	@Transactional
+	
 	@Override
-	public Administrador registrarAdministrador(Administrador administrador) {
-		Persona persona;
-		persona = personaService.registrarPersona((Persona) administrador);
-		
-		if (persona!=null) {
-			administrador.setId(persona.getId());
-			administradorMapper.insertAdministrador(administrador);
-		}else{
-			administrador=null;
-		}
-		
-		LOG.info("registrarAdministrador: "+administrador);
-		return administrador;
-	}
-
-	@Override
-	public Administrador modificarAdministrador(Administrador administrador) {
+	public List<UInmobiliaria> obtenerListaUInmobiliariaPorAdministrador(Administrador administrador) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return uinmobiliariaMapper.selectUInmobiliariaByAdministrador(administrador);
 	}
 
+
 	@Override
-	public Boolean eliminarAdministrador(int id) {
+	public Administrador obtenerAdministradorPorUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		return null;
+		return administradorMapper.selectAdministradorByUsuario(usuario);
 	}
+
 
 	@Override
 	public Administrador obtenerAdministradorPorId(int id) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Administrador> obtenerListaAdministrador() {
-		// TODO Auto-generated method stub
-		return null;
+		return administradorMapper.selectAdministradorById(id);
 	}
 	
+	
+	
+	
+
 }

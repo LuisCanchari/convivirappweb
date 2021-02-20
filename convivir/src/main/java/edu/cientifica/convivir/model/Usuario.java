@@ -5,8 +5,6 @@ public class Usuario extends Persona{
 	private String password;
 	private String correo;
 	
-	private UInmobiliaria uinmobiliaria;
-	
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub

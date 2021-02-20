@@ -1,19 +1,16 @@
 package edu.cientifica.convivir.mappers;
 
-import java.util.List;
+
 
 import org.apache.ibatis.annotations.Mapper;
 
 
 import edu.cientifica.convivir.model.Administrador;
+import edu.cientifica.convivir.model.Usuario;
 
 @Mapper
 public interface AdministradorMapper {
-	public int insertAdministrador (Administrador administrador);
-	public int updateAdministrador (Administrador administrador);
-	public int deleteAdministradorById(int id);
+	public Administrador selectAdministradorByUsuario(Usuario usuario);
 	public Administrador selectAdministradorById(int id);
-	public List<Administrador> selectAdministrador();
-	 
 
 }

@@ -13,9 +13,6 @@ import edu.cientifica.convivir.service.UsuarioService;
 @RequestMapping("/")
 public class InicioController {
 
-	@Autowired
-	private UsuarioService usuarioService;
-
 	@GetMapping({ "/index", "/" })
 	public String inicio() {
 		return "index";
@@ -27,34 +24,15 @@ public class InicioController {
 		return "inicio_login";
 	}
 
-	
 	@RequestMapping("/salir")
 	public String salir() {
-
-		return "index";
-
+		return "redirect:/";
 	}
 
 	@GetMapping("/registrar")
 	public String getRegistrar() {
-
 		return "inicio_registrar";
-
 	}
 	
-	@PostMapping("/registrar")
-	public String postRegistrar(
-			@RequestParam(name = "nombre") String nombre,
-			@RequestParam(name = "primerapellido") String primerApellido,
-			@RequestParam(name = "segundoapellido") String segundoApellido,
-			@RequestParam(name = "tipodocumento") String tipoDocumento,
-			@RequestParam(name = "numerodocumento") String numeroDocumento,
-			@RequestParam(name = "email") String email,
-			@RequestParam(name = "usuario") String usuario,
-			@RequestParam(name = "password") String password
-			){
-		
-		
-		return "";
-	}
+	
 }

@@ -19,13 +19,15 @@ public class PersonaServiceImpl implements PersonaService{
 	@Autowired
 	private PersonaMapper personaMapper;
 
-	@Transactional
+	//@Transactional
 	@Override
 	public Persona registrarPersona(Persona persona) {
 		
 		if (persona.getId()==null){
 			persona.setId(personaMapper.newIdPersona());
 		}
+		
+		LOG.info(this.getClass().getName()+" registrarPersona "+ persona.toString());
 		
 		if (personaMapper.insertPersona(persona)<1) {
 			persona = null;

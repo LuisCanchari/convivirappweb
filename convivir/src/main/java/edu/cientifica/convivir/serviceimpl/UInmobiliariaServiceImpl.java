@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.cientifica.convivir.mappers.UInmobiliariaMapper;
+import edu.cientifica.convivir.model.Administrador;
 import edu.cientifica.convivir.model.UInmobiliaria;
+import edu.cientifica.convivir.model.UsuarioFinal;
 import edu.cientifica.convivir.service.UInmobiliariaService;
 
 @Service
@@ -22,18 +24,20 @@ public class UInmobiliariaServiceImpl implements UInmobiliariaService{
 	@Transactional
 	@Override
 	public UInmobiliaria registrarUInmobiliaria(UInmobiliaria uinmobiliaria) {
+		UInmobiliaria unidad = null;
 		
 		if (uinmobiliaria.getId()==null) {
-			uinmobiliaria.setId(uinmobiliariaMapper.selectNewId());
+			unidad=uinmobiliaria;
+			unidad.setId(uinmobiliariaMapper.selectNewId());
 		}
-		if (uinmobiliariaMapper.insertUInmobiliaria(uinmobiliaria)<1) {
-			uinmobiliaria = null;
+		if (uinmobiliariaMapper.insertUInmobiliaria(unidad)<1) {
+			unidad = null;
 		}else {
-			uinmobiliariaMapper.insertAdministrador(uinmobiliaria);
+			uinmobiliariaMapper.insertAdministrador(unidad);
+			unidad =  uinmobiliariaMapper.selectUInmobiliariaById(uinmobiliaria.getId());
 		}
 		
-		LOG.info("registrarUInmobiliaria: "+uinmobiliaria);
-		return uinmobiliaria;
+		return unidad;
 	}
 
 	@Override
@@ -51,7 +55,7 @@ public class UInmobiliariaServiceImpl implements UInmobiliariaService{
 	@Override
 	public UInmobiliaria obtenerUInmobiliariaPorId(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return uinmobiliariaMapper.selectUInmobiliariaById(id);
 	}
 
 	@Override
@@ -59,5 +63,22 @@ public class UInmobiliariaServiceImpl implements UInmobiliariaService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<UInmobiliaria> obtenerUInmobiliariaPorAdministrador(Administrador administrador) {
+		// TODO Auto-generated method stub
+		LOG.info(this.getClass().getName()+" administrador " +administrador.toString());
+		List<UInmobiliaria> lista;
+		lista = uinmobiliariaMapper.selectUInmobiliariaByAdministrador(administrador);
+		LOG.info(this.getClass()+" administrador " + administrador.getId());
+		return lista ;
+	}
+
+	@Override
+	public UInmobiliaria obtenerUInmobiliariaPorUsuarioFinal(UsuarioFinal usuarioFinal) {
+		// TODO Auto-generated method stub
+		return uinmobiliariaMapper.selectUInmobiliariaByUsuarioFinal(usuarioFinal);
+	}
+	
 
 }

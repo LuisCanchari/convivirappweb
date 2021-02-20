@@ -28,6 +28,9 @@ public class AdministradorController {
 	protected final Log LOG = LogFactory.getLog(this.getClass());
 	
 	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
 	private AdministradorService administradorService;
 	
 	@GetMapping("/")
@@ -46,17 +49,16 @@ public class AdministradorController {
 	public String registrarAdministrador(@Valid @ModelAttribute("administrador") Administrador administrador, 
 			BindingResult errors,
 			Model model) {
-		LOG.info("nuevoAdministrador post: "+administrador .toString());
-		administrador = administradorService.registrarAdministrador(administrador);
+		Administrador admin; 
+		admin = (Administrador) usuarioService.registrarUsuario(administrador);
+		admin.setListaUInmobiliaria(administradorService.obtenerListaUInmobiliariaPorAdministrador(administrador));
+		//UInmobiliaria uinmobiliaria = new UInmobiliaria();
+		//uinmobiliaria.setAdministrador(administrador);
+		LOG.info(this.getClass().getName() + administrador.toString());
+		model.addAttribute("administrador", admin);
+		//model.addAttribute("listaUInmobiliaria", administradorService.obtenerListaUInmobiliariaPorAdministrador(administrador));
 		
-		UInmobiliaria uinmobiliaria = new UInmobiliaria();
-		uinmobiliaria.setAdministrador(administrador);
-		model.addAttribute("uinmobiliaria", uinmobiliaria);
-		
-	
-		return "uinmobiliaria_nuevo";
-		//return "inicio_principal";
-		//return "redirect:/principal";
+		return "uinmobiliaria_lista";
 	}
 	
 	@PutMapping("/{id}")
@@ -77,5 +79,24 @@ public class AdministradorController {
 		
 		LOG.info("administradorNuevo: "+administradorNuevo.toString());
 		return "administrador_nuevo";
+	}
+	
+	@GetMapping("/{id}/uinmobiliaria")
+	public String agregarUInmobiliaria(@PathVariable (name = "id") int id,
+			Model model) {
+		
+		LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+id);
+		Usuario usuario;
+		UInmobiliaria uinmobiliaria =  new UInmobiliaria();
+		Administrador administrador;
+		usuario = usuarioService.obtenerUsuarioPorId(id);
+		administrador = administradorService.obtenerAdministradorPorUsuario(usuario);
+		
+		uinmobiliaria.setAdministrador(administrador);
+		
+		LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+administrador.toString());
+		
+		model.addAttribute("uinmobiliaria", uinmobiliaria);
+		return "uinmobiliaria_nuevo";
 	}
 }

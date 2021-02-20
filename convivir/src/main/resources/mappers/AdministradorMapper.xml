@@ -2,27 +2,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="edu.cientifica.convivir.mappers.AdministradorMapper">
-	
+
 	<resultMap id="admnistradorResultMap"
 		type="edu.cientifica.convivir.model.Administrador"
-		extends="edu.cientifica.convivir.mappers.PersonaMapper.personaResultMap">
-		<result column="username" property="username" />
-		<result column="password" property="password" />
-		<result column="email" property="correo" />
+		extends="edu.cientifica.convivir.mappers.UsuarioMapper.usuarioResultMap">
 	</resultMap>
 
-	<insert id="insertAdministrador"
-		parameterType="edu.cientifica.convivir.model.Administrador">
-		INSERT INTO db_convivir5.usuario
-		(id_usuario,
-		username,
-		password,
-		email
-		)
-		VALUES
-		(#{id},
-		#{username},
-		#{password},
-		#{correo});
-	</insert>
+	<select id="selectAdministradorByUsuario"
+		resultMap="admnistradorResultMap"
+		parameterType="edu.cientifica.convivir.model.Usuario">
+		SELECT DISTINCT
+		u.id_usuario,
+		u.username,
+		u.email,
+		u.password,
+		pe.id_persona,
+		pe.nombre,
+		pe.tipo_documento,
+		pe.num_documento,
+		pe.primer_apellido,
+		pe.segundo_apellido,
+		pe.fecha_nacimiento
+		FROM usuario u
+		INNER JOIN persona pe
+		ON u.id_usuario = pe.id_persona
+		INNER JOIN perfil p
+		ON u.id_usuario =
+		p.id_usuario
+		AND p.id_tipo_perfil = 1
+		WHERE u.id_usuario = #{id};
+	</select>
+	
+	<select id="selectAdministradorById"
+		resultMap="admnistradorResultMap"
+		parameterType="int">
+		SELECT DISTINCT
+		u.id_usuario,
+		u.username,
+		u.email,
+		u.password,
+		pe.id_persona,
+		pe.nombre,
+		pe.tipo_documento,
+		pe.num_documento,
+		pe.primer_apellido,
+		pe.segundo_apellido,
+		pe.fecha_nacimiento
+		FROM usuario u
+		INNER JOIN persona pe
+		ON u.id_usuario = pe.id_persona
+		INNER JOIN perfil p
+		ON u.id_usuario =
+		p.id_usuario
+		AND p.id_tipo_perfil = 1
+		WHERE u.id_usuario = #{id};
+	</select>
 </mapper>

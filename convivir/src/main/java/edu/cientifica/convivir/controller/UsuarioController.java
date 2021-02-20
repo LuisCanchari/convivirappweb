@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.cientifica.convivir.mappers.AdministradorMapper;
 import edu.cientifica.convivir.model.Administrador;
 import edu.cientifica.convivir.model.UInmobiliaria;
 import edu.cientifica.convivir.model.Usuario;
+import edu.cientifica.convivir.service.AdministradorService;
+import edu.cientifica.convivir.service.UInmobiliariaService;
 import edu.cientifica.convivir.service.UsuarioService;
 
 @Controller
@@ -32,27 +35,21 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private UInmobiliariaService uinmobiliariaService;
+	
+	@Autowired
+	private AdministradorService administradorService;
+	
 	@GetMapping("/")
 	public String obtenerListaUsuario() {
 			return "";
 	}
-	
 
 	@GetMapping("/{id}")
 	public String obtenerUsuario(@PathVariable (name = "id") int id) {
 		
 		return "";
-	}
-	
-	@PostMapping("/registrar")
-	public String registrarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, 
-			BindingResult errors,
-			Model model) {
-		LOG.info("nuevoUsuario post: "+usuario.toString());
-		
-		usuarioService.registrarUsuario(usuario);
-		return "inicio_principal";
-		//return "redirect:/principal";
 	}
 	
 	@PutMapping("/{id}")
@@ -69,23 +66,46 @@ public class UsuarioController {
 	
 	@GetMapping("/nuevo")
 	public String nuevoUsuario(Model model) {
-			
+		
 		Usuario usuarioNuevo = new Usuario();
 		model.addAttribute("usuario", usuarioNuevo);
-		
 		LOG.info("nuevoUsuario: "+usuarioNuevo.toString());
 		return "usuario_nuevo";
+	}
+	
+	@PostMapping("/registrar")
+	public String registrarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, 
+			BindingResult errors,
+			Model model) {
+		LOG.info("nuevoUsuario post: "+usuario.toString());
+		
+		usuarioService.registrarUsuario(usuario);
+		return "inicio_principal";
+		//return "redirect:/principal";
 	}
 	
 	@PostMapping("/validar")
 	public String validarUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, 
 			BindingResult errors, Model model) {
 		
+		Administrador administrador = new Administrador();
+		Usuario usuarioDb;
+		usuarioDb = usuarioService.obtenerUsuarioPorUsername(usuario); 
+		
+		
 		if (usuarioService.validarUsuario(usuario)) {
-			return "inicio_principal";
-		}else{
+			if (usuarioService.esAdministrador(usuarioDb)) {
+				administrador = administradorService.obtenerAdministradorPorUsuario(usuarioDb);
+				administrador.setListaUInmobiliaria(uinmobiliariaService.obtenerUInmobiliariaPorAdministrador(administrador));
+				model.addAttribute("administrador", administrador);
+				
+				LOG.info("validarUsuario:" + administrador.getListaUInmobiliaria().size());
+				return "uinmobiliaria_lista";
+			}else {
+				return "inicio_principal";
+			}
+		}else {
 			return  "redirect:/login";
 		}
-		
 	}
 }

@@ -95,8 +95,11 @@ public class UInmobiliaria {
 	public String toString() {
 		return "UInmobiliaria [id=" + id + ", nombreCorto=" + nombreCorto + ", nombreLargo=" + nombreLargo
 				+ ", direccion=" + direccion + ", codigoUbigeo=" + codigoUbigeo + ", mapaLatitud=" + mapaLatitud
-				+ ", mapaLongitud=" + mapaLongitud + ", listaUPrivada=" + listaUPrivada + "]";
+				+ ", mapaLongitud=" + mapaLongitud + ", administrador=" + administrador.toString() + ", listaUPrivada="
+				+ listaUPrivada + "]";
 	}
+
+	
 	
 	
 	

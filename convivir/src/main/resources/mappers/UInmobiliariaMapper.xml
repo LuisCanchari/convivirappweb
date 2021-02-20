@@ -53,7 +53,98 @@
 		#{administrador.id},
 		"1");
 	</insert>
+	
+	<select id="selectUInmobiliariaById"
+		resultMap="uinmobiliariaResultMap">
+		SELECT ui.id_uinmobiliaria,
+		ui.nombre_corto,
+		ui.nombre_largo,
+		ui.des_direccion,
+		ui.ubigeo,
+		ui.latitud_map,
+		ui.longitud_map,
+        u.id_usuario,
+        u.username,
+        u.email,
+        u.password,
+        pe.nombre,
+        pe.tipo_documento,
+        pe.num_documento,
+        pe.primer_apellido, 
+        pe.segundo_apellido,
+        pe.fecha_nacimiento
+		FROM unidadinmobiliaria ui
+		INNER JOIN perfil p
+		ON ui.id_uinmobiliaria = p.id_uinmobiliaria
+        AND p.id_tipo_perfil = 1
+		INNER JOIN usuario u
+		ON p.id_usuario = u.id_usuario
+        INNER JOIN  persona pe
+        ON u.id_usuario = pe.id_persona
+		WHERE ui.id_uinmobiliaria = #{id};
+	</select>
 
+	<select id="selectUInmobiliariaByAdministrador"
+		resultMap="uinmobiliariaResultMap"
+		parameterType="edu.cientifica.convivir.model.Administrador">
+		SELECT ui.id_uinmobiliaria,
+		ui.nombre_corto,
+		ui.nombre_largo,
+		ui.des_direccion,
+		ui.ubigeo,
+		ui.latitud_map,
+		ui.longitud_map,
+        u.id_usuario,
+        u.username,
+        u.email,
+        u.password,
+        pe.nombre,
+        pe.tipo_documento,
+        pe.num_documento,
+        pe.primer_apellido, 
+        pe.segundo_apellido,
+        pe.fecha_nacimiento
+		FROM unidadinmobiliaria ui
+		INNER JOIN perfil p
+		ON ui.id_uinmobiliaria = p.id_uinmobiliaria
+        AND p.id_tipo_perfil = 1
+		INNER JOIN usuario u
+		ON p.id_usuario = u.id_usuario
+        INNER JOIN  persona pe
+        ON u.id_usuario = pe.id_persona
+		WHERE u.id_usuario = #{id};
+	</select>
+	<select id="selectUInmobiliariaByUsuarioFinal"
+		resultMap="uinmobiliariaResultMap"
+		parameterType="edu.cientifica.convivir.model.UsuarioFinal">
+		SELECT ui.id_uinmobiliaria,
+		ui.nombre_corto,
+		ui.nombre_largo,
+		ui.des_direccion,
+		ui.ubigeo,
+		ui.latitud_map,
+		ui.longitud_map,
+        u.id_usuario,
+        u.username,
+        u.email,
+        u.password,
+        pe.nombre,
+        pe.tipo_documento,
+        pe.num_documento,
+        pe.primer_apellido, 
+        pe.segundo_apellido,
+        pe.fecha_nacimiento
+		FROM unidadinmobiliaria ui
+		INNER JOIN perfil p
+		ON ui.id_uinmobiliaria = p.id_uinmobiliaria
+        AND p.id_tipo_perfil = 2
+		INNER JOIN usuario u
+		ON p.id_usuario = u.id_usuario
+        INNER JOIN  persona pe
+        ON u.id_usuario = pe.id_persona
+		WHERE u.id_usuario = #{id};
+	</select>
 
-
+	<sql id="sqlListaUinmobiliaria">
+	</sql>
 </mapper>

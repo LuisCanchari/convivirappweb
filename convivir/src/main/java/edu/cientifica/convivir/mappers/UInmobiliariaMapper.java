@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import edu.cientifica.convivir.model.Administrador;
 import edu.cientifica.convivir.model.UInmobiliaria;
+import edu.cientifica.convivir.model.UsuarioFinal;
 
 
 @Mapper
@@ -17,5 +19,9 @@ public interface UInmobiliariaMapper {
 	public List<UInmobiliaria> selectUInmobiliaria();
 	public int selectNewId();
 	public int insertAdministrador(UInmobiliaria uinmobiliaria);
+	
+	public List<UInmobiliaria> selectUInmobiliariaByAdministrador(Administrador administrador);
+	
+	public UInmobiliaria selectUInmobiliariaByUsuarioFinal(UsuarioFinal usuarioFinal);
 
 }

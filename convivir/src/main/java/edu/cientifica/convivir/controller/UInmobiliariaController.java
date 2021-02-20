@@ -31,6 +31,9 @@ public class UInmobiliariaController {
 	@Autowired
 	private UInmobiliariaService uinmobiliariaService;
 	
+	@Autowired
+	private AdministradorService administradorService;
+	
 	@GetMapping("/")
 	public String obtenerUInmobiliaria() {
 		
@@ -42,22 +45,13 @@ public class UInmobiliariaController {
 		
 		return "";
 	}
-	
-	@PostMapping("/registrar")
-	public String registrarUInmobiliaria(@Valid @ModelAttribute("uinmobiliaria") UInmobiliaria uinmobiliaria, 
-			BindingResult errors,
-			Model model) {
-		LOG.info("registrarUInmobiliaria: "+uinmobiliaria);
-		uinmobiliariaService.registrarUInmobiliaria(uinmobiliaria);
-			
-		return "inicio_principal";
-	}
-	
+		
+	/*
 	@PutMapping("/{id}")
 	public String modificarUInmobiliaria(@PathVariable (name = "id") int id) {
 		
 		return "";
-	}
+	}*/
 	
 	@DeleteMapping("/{id}")
 	public String eliminarUInmobiliaria(@PathVariable (name = "id") int id) {
@@ -67,13 +61,30 @@ public class UInmobiliariaController {
 	
 	@GetMapping("/nuevo")
 	public String nuevoUInmobiliaria(Model model) {
-			
 		UInmobiliaria uinmobiliaria = new UInmobiliaria();  
-		
 		model.addAttribute("uinmobiliaria", uinmobiliaria);
-		
-		LOG.info("nuevoUInmobiliaria: "+uinmobiliaria.toString());
+	//	LOG.info("nuevoUInmobiliaria: "+uinmobiliaria.toString());
 		return "uinmobiliaria_nuevo";
+	}
+	
+	@PostMapping("/registrar")
+	public String registrarUInmobiliaria(@Valid @ModelAttribute("uinmobiliaria") UInmobiliaria uinmobiliaria, 
+			BindingResult errors,
+			Model model) {
+		UInmobiliaria unidadInmobiliaria;
+		Administrador administrador;
+		unidadInmobiliaria = uinmobiliariaService.registrarUInmobiliaria(uinmobiliaria);
+		administrador = administradorService.obtenerAdministradorPorId(uinmobiliaria.getAdministrador().getId());
+		administrador.setListaUInmobiliaria(administradorService.obtenerListaUInmobiliariaPorAdministrador(administrador));
+		
+		model.addAttribute("administrador", administrador);
+		return "uinmobiliaria_lista";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String modificarUInmobiliaria(@PathVariable (name = "id") int id) {
+		
+		return "uinmobiliaria_edit";
 	}
 
 }
