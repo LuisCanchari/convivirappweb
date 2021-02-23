@@ -21,6 +21,7 @@ import edu.cientifica.convivir.model.UInmobiliaria;
 import edu.cientifica.convivir.model.Usuario;
 import edu.cientifica.convivir.service.AdministradorService;
 import edu.cientifica.convivir.service.UInmobiliariaService;
+import edu.cientifica.convivir.service.UPrivadaService;
 import edu.cientifica.convivir.service.UsuarioService;
 
 @Controller
@@ -32,6 +33,9 @@ public class UInmobiliariaController {
 	private UInmobiliariaService uinmobiliariaService;
 	
 	@Autowired
+	private UPrivadaService uprivadaService;
+	
+	@Autowired
 	private AdministradorService administradorService;
 	
 	@GetMapping("/")
@@ -41,22 +45,13 @@ public class UInmobiliariaController {
 	}
 
 	@GetMapping("/{id}")
-	public String obtenerUInmobiliaria(@PathVariable (name = "id") int id) {
+	public String obtenerUInmobiliaria(@PathVariable (name = "id") int id, Model model) {
+		UInmobiliaria uinmobiliaria;
+		uinmobiliaria = uinmobiliariaService.obtenerUInmobiliariaPorId(id);
+		uinmobiliaria.setListaUPrivada(uprivadaService.obtenerListaUPrivadaPorUInmobiliariaId(id));
 		
-		return "";
-	}
-		
-	/*
-	@PutMapping("/{id}")
-	public String modificarUInmobiliaria(@PathVariable (name = "id") int id) {
-		
-		return "";
-	}*/
-	
-	@DeleteMapping("/{id}")
-	public String eliminarUInmobiliaria(@PathVariable (name = "id") int id) {
-		
-		return "";
+		model.addAttribute("uinmobiliaria", uinmobiliaria);
+		return "uinmobiliaria_detail";
 	}
 	
 	@GetMapping("/nuevo")

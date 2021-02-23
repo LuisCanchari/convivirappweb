@@ -1,3 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.UPrivadaMapper"></mapper>
+<mapper namespace="edu.cientifica.convivir.mappers.UPrivadaMapper">
+
+<resultMap id="uprivadaResultMap" type="edu.cientifica.convivir.model.UPrivada">
+	<id column="id_uprivada" property="id"/>
+	<result column="id_tipo_unidad" property="tipoUnidad"/>
+	<result column="numeracion" property="numero"/>
+	<result column="zona" property="zona"/>
+	<association column="id_uinmobiliaria" property="uinmobiliaria" 
+	javaType="edu.cientifica.convivir.model.UInmobiliaria"
+	resultMap="edu.cientifica.convivir.mappers.UInmobiliariaMapper.uinmobiliariaResultMap"/>
+	<association column="" property="propietario"
+	javaType = "edu.cientifica.convivir.model.Propietario"
+	resultMap = "edu.cientifica.convivir.mappers.PropietarioMapper.propietarioResultMap"/>
+</resultMap>
+
+<select id="selectListaUPrivadaByUInmobiliariaId" 
+resultMap="uprivadaResultMap"
+parameterType="int">
+	SELECT ui.id_uinmobiliaria, ui.nombre_corto, ui.nombre_largo, ui.des_direccion, ui.ubigeo, ui.latitud_map, ui.longitud_map,
+	up.id_uprivada, up.id_tipo_unidad, up.numeracion, up.zona,
+	p.id_persona, p.nombre, p.primer_apellido, p.segundo_apellido, p.tipo_documento, p.num_documento
+	FROM unidadinmobiliaria ui
+	LEFT JOIN unidadprivada up
+	ON ui.id_uinmobiliaria = up.id_uinmobiliaria
+	LEFT JOIN persona_up pup
+	ON up.id_uprivada = pup.id_uprivada
+	AND pup.id_tipo_relacion = 1
+	LEFT JOIN persona p
+	ON p.id_persona = pup.id_persona
+	WHERE ui.id_uinmobiliaria=#{id};
+</select>
+</mapper>

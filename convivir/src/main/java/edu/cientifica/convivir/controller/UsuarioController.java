@@ -52,17 +52,6 @@ public class UsuarioController {
 		return "";
 	}
 	
-	@PutMapping("/{id}")
-	public String actualizarUsuario(@PathVariable (name = "id") int id) {
-		
-		return "";
-	}
-	
-	@DeleteMapping("/{id}")
-	public String eliminarUsuario(@PathVariable (name = "id") int id) {
-		
-		return "";
-	}
 	
 	@GetMapping("/nuevo")
 	public String nuevoUsuario(Model model) {

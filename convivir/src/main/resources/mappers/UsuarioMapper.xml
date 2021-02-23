@@ -28,7 +28,7 @@
 
 	<select id="selectUsuarioPorUsername"
 		resultMap="usuarioResultMap" parameterType="String">
-		SELECT p.id_persona, u.username, u.password, u.email,
+		SELECT DISTINCT p.id_persona, u.username, u.password, u.email,
 		p.tipo_documento, p.num_documento, p.nombre, p.primer_apellido,
 		p.segundo_apellido
 		FROM usuario u
@@ -37,7 +37,7 @@
 		WHERE username = #{username};
 	</select>
 	<select id="selectUsuarioById" 	resultMap="usuarioResultMap" parameterType="int">
-		SELECT p.id_persona, u.username, u.password, u.email,
+		SELECT DISTINCT p.id_persona, u.username, u.password, u.email,
 		p.tipo_documento, p.num_documento, p.nombre, p.primer_apellido,
 		p.segundo_apellido
 		FROM usuario u

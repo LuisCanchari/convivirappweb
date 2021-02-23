@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/convivir.css" th:href="@{/css/convivir.css}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPrivada</title>
+</head>
+
+<body>
+    <header>
+        <div class="container" id="cabecera">
+            <div class="row align-items-lg-center">
+                <div class="col-lg-8" id="logo">
+                    <img src="../static/img/logotitulo.png" th:src="@{/img/logotitulo.png}" alt="logotitulo">
+                </div>
+
+                <div class="col-lg">
+                    <a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
+                </div>
+                
+                <div class="col-lg">
+                    <a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
+                </div>
+                
+            </div>
+            <div class="row" id="foto">
+                <img src="../static/img/fotoheader.png" th:src="@{/img/fotoheader.png}" alt="fotoheader">
+            </div>
+        </div>
+    </header>
+
+  <section>
+		<div class="container" id="contenido">
+			<div>
+				<a name="" id="" class="btn btn-success btn-lg btn-block" href="#" role="button" th:text=${uinmobiliaria.administrador.username}>Nuevo Condominio</a>
+			</div>
+			<table class="table table-light">
+				<thead class="thead-light">
+					<tr>
+						<th>Id</th>
+						<th>Tipo</th>
+						<th>Numero</th>
+						<th>Propietario</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:if="${uinmobiliaria.listaUPrivada.empty}">
+						<td>No existen resultados</td>
+					</tr>
+					<tr th:each="unidad: ${uinmobiliaria.listaUPrivada}">
+						<td><span th:text="${unidad.id}">1</span></td>
+						<td><span th:text="${unidad.tipoUnidad}">Tipo</span></td>
+						<td><span th:text="${unidad.numero}">101</span></td>
+						<td><span th:text="${unidad.propietario.nombre}">Juan</span></td>
+						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> <i class="fa fa-pencil-square" aria-hidden="true"></i>
+									Edit
+							</a>
+						</span></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+
+
+    <footer> </footer>
+
+
+</body>
+
+
+
+</html>

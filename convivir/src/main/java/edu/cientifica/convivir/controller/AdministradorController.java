@@ -49,14 +49,13 @@ public class AdministradorController {
 	public String registrarAdministrador(@Valid @ModelAttribute("administrador") Administrador administrador, 
 			BindingResult errors,
 			Model model) {
+		
 		Administrador admin; 
 		admin = (Administrador) usuarioService.registrarUsuario(administrador);
 		admin.setListaUInmobiliaria(administradorService.obtenerListaUInmobiliariaPorAdministrador(administrador));
-		//UInmobiliaria uinmobiliaria = new UInmobiliaria();
-		//uinmobiliaria.setAdministrador(administrador);
 		LOG.info(this.getClass().getName() + administrador.toString());
 		model.addAttribute("administrador", admin);
-		//model.addAttribute("listaUInmobiliaria", administradorService.obtenerListaUInmobiliariaPorAdministrador(administrador));
+
 		
 		return "uinmobiliaria_lista";
 	}

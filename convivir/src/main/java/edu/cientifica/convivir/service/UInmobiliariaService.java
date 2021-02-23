@@ -17,4 +17,5 @@ public interface UInmobiliariaService {
 	
 	public List<UInmobiliaria> obtenerUInmobiliariaPorAdministrador(Administrador administrador);
 	public UInmobiliaria obtenerUInmobiliariaPorUsuarioFinal(UsuarioFinal usuarioFinal);
+	
 }
