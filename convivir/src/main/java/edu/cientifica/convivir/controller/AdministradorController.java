@@ -87,13 +87,13 @@ public class AdministradorController {
 		LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+id);
 		Usuario usuario;
 		UInmobiliaria uinmobiliaria =  new UInmobiliaria();
-		Administrador administrador;
+		Administrador administrador = new Administrador();
 		usuario = usuarioService.obtenerUsuarioPorId(id);
-		administrador = administradorService.obtenerAdministradorPorUsuario(usuario);
+		administrador.setId(id);
 		
 		uinmobiliaria.setAdministrador(administrador);
 		
-	//	LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+administrador.toString());
+		LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+administrador.toString());
 		
 		model.addAttribute("uinmobiliaria", uinmobiliaria);
 		return "uinmobiliaria_nuevo";
