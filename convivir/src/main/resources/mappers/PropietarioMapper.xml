@@ -5,4 +5,7 @@
 	type="edu.cientifica.convivir.model.Propietario" 
 	extends="edu.cientifica.convivir.mappers.PersonaMapper.personaResultMap">
 	</resultMap>
+	
+	<select id="">
+	</select>
 </mapper>

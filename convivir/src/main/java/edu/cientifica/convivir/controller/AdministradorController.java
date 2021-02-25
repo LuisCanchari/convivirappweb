@@ -93,7 +93,7 @@ public class AdministradorController {
 		
 		uinmobiliaria.setAdministrador(administrador);
 		
-		LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+administrador.toString());
+	//	LOG.info(this.getClass().getName()+" agregarUInmobiliaria: "+administrador.toString());
 		
 		model.addAttribute("uinmobiliaria", uinmobiliaria);
 		return "uinmobiliaria_nuevo";

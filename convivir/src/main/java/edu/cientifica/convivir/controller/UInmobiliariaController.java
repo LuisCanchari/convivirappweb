@@ -1,5 +1,9 @@
 package edu.cientifica.convivir.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -17,9 +21,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.cientifica.convivir.model.Administrador;
+import edu.cientifica.convivir.model.Persona;
 import edu.cientifica.convivir.model.UInmobiliaria;
+import edu.cientifica.convivir.model.UPrivada;
 import edu.cientifica.convivir.model.Usuario;
 import edu.cientifica.convivir.service.AdministradorService;
+import edu.cientifica.convivir.service.PersonaService;
 import edu.cientifica.convivir.service.UInmobiliariaService;
 import edu.cientifica.convivir.service.UPrivadaService;
 import edu.cientifica.convivir.service.UsuarioService;
@@ -37,6 +44,10 @@ public class UInmobiliariaController {
 	
 	@Autowired
 	private AdministradorService administradorService;
+	
+	@Autowired
+	private PersonaService personaService;
+	
 	
 	@GetMapping("/")
 	public String obtenerUInmobiliaria() {
@@ -80,6 +91,24 @@ public class UInmobiliariaController {
 	public String modificarUInmobiliaria(@PathVariable (name = "id") int id) {
 		
 		return "uinmobiliaria_edit";
+	}
+	@GetMapping("/{id}/uprivada")
+	public String nuevoUPrivada(@PathVariable (name = "id") int id, Model model) {
+		UPrivada uprivada =  new UPrivada();
+		UInmobiliaria uinmobiliaria;
+		List<Persona> listaPersona;
+		List<HashMap<Integer, String>> listaTipoUnidadPrivada; //= new HashMap<Integer, String>();
+		listaTipoUnidadPrivada =  uprivadaService.obtenerMapaTipoUnidad();
+		uinmobiliaria = uinmobiliariaService.obtenerUInmobiliariaPorId(id);
+		
+		uprivada.setId(uprivadaService.generarNuevoId());
+		uprivada.setUinmobiliaria(uinmobiliaria);
+		listaPersona = personaService.obtenerListaPersona();
+		
+		model.addAttribute("uprivada", uprivada);
+		model.addAttribute("listaPersona", listaPersona);
+		model.addAttribute("listaTipoUnidad", listaTipoUnidadPrivada);
+		return "uprivada_add";
 	}
 
 }

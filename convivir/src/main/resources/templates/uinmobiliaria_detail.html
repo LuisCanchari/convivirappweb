@@ -23,7 +23,7 @@
                 </div>
                 
                 <div class="col-lg">
-                    <a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
+                    <a name="" id=""  href="#" th:text="'Usuario: '+${uinmobiliaria.administrador.username}" role="button"></a>
                 </div>
                 
             </div>
@@ -36,7 +36,8 @@
   <section>
 		<div class="container" id="contenido">
 			<div>
-				<a name="" id="" class="btn btn-success btn-lg btn-block" href="#" role="button" th:text=${uinmobiliaria.administrador.username}>Nuevo Condominio</a>
+				<a name="" id="" class="btn btn-success btn-lg btn-block" role="button" 
+				th:href="@{'/uinmobiliaria/'+${uinmobiliaria.id}+'/uprivada'}">Nueva Propiedad</a>
 			</div>
 			<table class="table table-light">
 				<thead class="thead-light">
@@ -57,7 +58,7 @@
 						<td><span th:text="${unidad.id}">1</span></td>
 						<td><span th:text="${unidad.tipoUnidad}">Tipo</span></td>
 						<td><span th:text="${unidad.numero}">101</span></td>
-						<td><span th:text="${unidad.propietario.nombre}">Juan</span></td>
+						<td><span th:text="${unidad.propietario}?${unidad.propietario.nombre}:''">Juan</span></td>
 						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> <i class="fa fa-pencil-square" aria-hidden="true"></i>
 									Edit
 							</a>

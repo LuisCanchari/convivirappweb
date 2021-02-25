@@ -36,4 +36,8 @@
 		SELECT IFNULL(max(id_persona), 0)+1 as id 
 		FROM db_convivir5.persona
 	</select>
+	
+	<select id="selectPersona" resultMap="personaResultMap">
+		SELECT * FROM persona;
+	</select>
 </mapper>

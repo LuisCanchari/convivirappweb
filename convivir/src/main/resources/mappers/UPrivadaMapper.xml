@@ -1,34 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.cientifica.convivir.mappers.UPrivadaMapper">
+<mapper
+	namespace="edu.cientifica.convivir.mappers.UPrivadaMapper">
 
-<resultMap id="uprivadaResultMap" type="edu.cientifica.convivir.model.UPrivada">
-	<id column="id_uprivada" property="id"/>
-	<result column="id_tipo_unidad" property="tipoUnidad"/>
-	<result column="numeracion" property="numero"/>
-	<result column="zona" property="zona"/>
-	<association column="id_uinmobiliaria" property="uinmobiliaria" 
-	javaType="edu.cientifica.convivir.model.UInmobiliaria"
-	resultMap="edu.cientifica.convivir.mappers.UInmobiliariaMapper.uinmobiliariaResultMap"/>
-	<association column="" property="propietario"
-	javaType = "edu.cientifica.convivir.model.Propietario"
-	resultMap = "edu.cientifica.convivir.mappers.PropietarioMapper.propietarioResultMap"/>
-</resultMap>
+	<resultMap id="uprivadaResultMap"
+		type="edu.cientifica.convivir.model.UPrivada">
+		<id column="id_uprivada" property="id" />
+		<result column="id_tipo_unidad" property="tipoUnidad" />
+		<result column="numeracion" property="numero" />
+		<result column="zona" property="zona" />
+		<association column="id_uinmobiliaria"
+			property="uinmobiliaria"
+			javaType="edu.cientifica.convivir.model.UInmobiliaria"
+			resultMap="edu.cientifica.convivir.mappers.UInmobiliariaMapper.uinmobiliariaResultMap" />
+		<association column="" property="propietario"
+			javaType="edu.cientifica.convivir.model.Propietario"
+			resultMap="edu.cientifica.convivir.mappers.PropietarioMapper.propietarioResultMap" />
+	</resultMap>
 
-<select id="selectListaUPrivadaByUInmobiliariaId" 
-resultMap="uprivadaResultMap"
-parameterType="int">
-	SELECT ui.id_uinmobiliaria, ui.nombre_corto, ui.nombre_largo, ui.des_direccion, ui.ubigeo, ui.latitud_map, ui.longitud_map,
-	up.id_uprivada, up.id_tipo_unidad, up.numeracion, up.zona,
-	p.id_persona, p.nombre, p.primer_apellido, p.segundo_apellido, p.tipo_documento, p.num_documento
-	FROM unidadinmobiliaria ui
-	LEFT JOIN unidadprivada up
-	ON ui.id_uinmobiliaria = up.id_uinmobiliaria
-	LEFT JOIN persona_up pup
-	ON up.id_uprivada = pup.id_uprivada
-	AND pup.id_tipo_relacion = 1
-	LEFT JOIN persona p
-	ON p.id_persona = pup.id_persona
-	WHERE ui.id_uinmobiliaria=#{id};
-</select>
+	<select id="selectListaUPrivadaByUInmobiliariaId"
+		resultMap="uprivadaResultMap" parameterType="int">
+		SELECT
+		ui.id_uinmobiliaria, ui.nombre_corto, ui.nombre_largo,
+		ui.des_direccion, ui.ubigeo, ui.latitud_map, ui.longitud_map,
+		up.id_uprivada, up.id_tipo_unidad, up.numeracion, up.zona,
+		p.id_persona, p.nombre, p.primer_apellido, p.segundo_apellido,
+		p.tipo_documento, p.num_documento
+		FROM unidadinmobiliaria ui
+		INNER JOIN
+		unidadprivada up
+		ON ui.id_uinmobiliaria = up.id_uinmobiliaria
+		LEFT JOIN
+		persona_up pup
+		ON up.id_uprivada = pup.id_uprivada
+		AND
+		pup.id_tipo_relacion = 1
+		INNER JOIN persona p
+		ON p.id_persona =
+		pup.id_persona
+		WHERE ui.id_uinmobiliaria=#{id};
+	</select>
+	<select id="selectListaUPrivadaByAdministradorId">
+		SELECT ui.id_uinmobiliaria, ui.nombre_corto,
+		ui.nombre_largo,
+		ui.des_direccion, ui.ubigeo, ui.latitud_map,
+		ui.longitud_map,
+		up.id_uprivada, up.id_tipo_unidad, up.numeracion,
+		up.zona,
+		p.id_persona, p.nombre, p.primer_apellido, p.segundo_apellido,
+		p.tipo_documento, p.num_documento
+		FROM unidadinmobiliaria ui
+		INNER JOIN
+		unidadprivada up
+		ON ui.id_uinmobiliaria = up.id_uinmobiliaria
+		LEFT JOIN
+		persona_up pup
+		ON up.id_uprivada = pup.id_uprivada
+		AND
+		pup.id_tipo_relacion = 1
+		INNER JOIN persona p
+		ON p.id_persona =
+		pup.id_persona
+		WHERE p.id_persona=#{id};
+	</select>
+
+	<select id="selectNewId" resultType="int">
+		SELECT
+		IFNULL(MAX(id_uprivada),0)+1 Id FROM unidadprivada
+	</select>
+	<select id="selectMapaTipoUnidad" resultType="java.util.HashMap">
+		SELECT
+		id_tipo_unidad id, descripcion FROM tipounidad;
+	</select>
+	<insert id="insertUPrivada"
+		parameterType="edu.cientifica.convivir.model.UPrivada">
+		INSERT INTO unidadprivada
+		(id_uprivada,
+		numeracion,
+		zona,
+		id_uinmobiliaria,
+		id_tipo_unidad)
+		VALUES
+		(#{id},
+		#{numero},
+		#{zona},
+		#{uinmobiliaria.id},
+		#{tipoUnidad});
+	</insert>
+	<insert id="insertPropietario"
+		parameterType="edu.cientifica.convivir.model.UPrivada">
+		INSERT INTO persona_up
+		(id_uprivada,
+		id_persona,
+		id_tipo_relacion)
+		VALUES
+		(#{id},
+		#{propietario.id},
+		1);
+	</insert>
 </mapper>

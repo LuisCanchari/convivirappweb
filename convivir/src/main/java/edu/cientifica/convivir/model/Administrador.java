@@ -20,6 +20,7 @@ public class Administrador extends Usuario{
 
 	@Override
 	public String toString() {
-		return super.toString()+ " Administrador [listaUInmobiliaria=" + listaUInmobiliaria + "]";
+		return "Administrador [listaUInmobiliaria=" + listaUInmobiliaria + "]";
 	}
+
 }

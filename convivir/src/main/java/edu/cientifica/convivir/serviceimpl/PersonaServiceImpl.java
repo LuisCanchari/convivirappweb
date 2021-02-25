@@ -63,7 +63,7 @@ public class PersonaServiceImpl implements PersonaService{
 	@Override
 	public List<Persona> obtenerListaPersona() {
 		// TODO Auto-generated method stub
-		return null;
+		return personaMapper.selectPersona();
 	}
 	
 }
