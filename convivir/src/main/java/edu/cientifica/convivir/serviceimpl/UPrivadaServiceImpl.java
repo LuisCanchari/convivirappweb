@@ -36,7 +36,7 @@ public class UPrivadaServiceImpl implements UPrivadaService{
 	}
 	
 	@Override
-	@Transactional
+	@Transactional //
 	public int registrarUPrivada(UPrivada uprivada) {
 		int result=0;
 		

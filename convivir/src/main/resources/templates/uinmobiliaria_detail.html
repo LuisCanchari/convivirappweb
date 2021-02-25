@@ -44,6 +44,7 @@
 					<tr>
 						<th>Id</th>
 						<th>Tipo</th>
+						<th>Zona</th>
 						<th>Numero</th>
 						<th>Propietario</th>
 						<th>Acciones</th>
@@ -57,10 +58,12 @@
 					<tr th:each="unidad: ${uinmobiliaria.listaUPrivada}">
 						<td><span th:text="${unidad.id}">1</span></td>
 						<td><span th:text="${unidad.tipoUnidad}">Tipo</span></td>
+						<td><span th:text="${unidad.zona}">Zona</span></td>
 						<td><span th:text="${unidad.numero}">101</span></td>
-						<td><span th:text="${unidad.propietario}?${unidad.propietario.nombre}:''">Juan</span></td>
-						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> <i class="fa fa-pencil-square" aria-hidden="true"></i>
-									Edit
+						<td><span th:text="${unidad.propietario}?${unidad.propietario.nombre}+' '+${unidad.propietario.primerApellido}">Juan</span></td>
+						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> 
+							<i class="fa fa-pencil-square" aria-hidden="true"></i>
+									Editar
 							</a>
 						</span></td>
 					</tr>

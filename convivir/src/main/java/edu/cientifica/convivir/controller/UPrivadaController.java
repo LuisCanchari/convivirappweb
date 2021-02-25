@@ -50,8 +50,8 @@ public class UPrivadaController {
 	
 	@PostMapping("")
 	public String registrarUPrivada(@ModelAttribute("uprivada") UPrivada uprivada) {
-		
 		LOG.info(this.getClass().getName()+" registrarUPrivada "+ uprivada.toString());
+		
 		uprivadaService.registrarUPrivada(uprivada);
 		
 		return "redirect:/uinmobiliaria/"+uprivada.getUinmobiliaria().getId();

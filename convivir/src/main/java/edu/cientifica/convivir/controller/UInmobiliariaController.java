@@ -92,12 +92,12 @@ public class UInmobiliariaController {
 		
 		return "uinmobiliaria_edit";
 	}
-	@GetMapping("/{id}/uprivada")
+	@GetMapping("/{id}/uprivada") //abrir formulario para insertar unidad privada
 	public String nuevoUPrivada(@PathVariable (name = "id") int id, Model model) {
 		UPrivada uprivada =  new UPrivada();
 		UInmobiliaria uinmobiliaria;
 		List<Persona> listaPersona;
-		List<HashMap<Integer, String>> listaTipoUnidadPrivada; //= new HashMap<Integer, String>();
+		List<HashMap<Integer, String>> listaTipoUnidadPrivada; 
 		listaTipoUnidadPrivada =  uprivadaService.obtenerMapaTipoUnidad();
 		uinmobiliaria = uinmobiliariaService.obtenerUInmobiliariaPorId(id);
 		

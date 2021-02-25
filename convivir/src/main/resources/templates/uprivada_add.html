@@ -106,7 +106,7 @@
 									<option 
 										th:each="persona:${listaPersona}"
 										th:value="${persona.id}"
-										th:text="${persona.nombre +' '+persona.primerApellido}">
+										th:text="${persona.nombre +' '+persona.primerApellido + ' ' + persona.segundoApellido}">
 									</option>
 								</select>
 							</div>
@@ -114,8 +114,7 @@
 						
 						<div class="form-group">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user"></i></span>
-								<input type="text" class="form-control" name="uinmobiliaria" th:field="*{uinmobiliaria.id}">
+								<input type="hidden" class="form-control" name="uinmobiliaria" th:field="*{uinmobiliaria.id}">
 							</div>
 						</div>
 						
