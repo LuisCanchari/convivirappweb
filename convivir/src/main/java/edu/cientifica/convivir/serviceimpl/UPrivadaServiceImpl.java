@@ -37,13 +37,15 @@ public class UPrivadaServiceImpl implements UPrivadaService{
 	
 	@Override
 	@Transactional //
-	public int registrarUPrivada(UPrivada uprivada) {
+	public UPrivada registrarUPrivada(UPrivada uprivada) {
 		int result=0;
+		UPrivada uprivadaResult = null;
+		uprivadaResult = uprivada;
 		
 		uprivadaMapper.insertUPrivada(uprivada);
 		result=uprivadaMapper.insertPropietario(uprivada);
 
-		return result;
+		return uprivadaResult ;
 	}
 
 	@Override
@@ -57,6 +59,27 @@ public class UPrivadaServiceImpl implements UPrivadaService{
 		// TODO Auto-generated method stub
 		return uprivadaMapper.selectMapaTipoUnidad();
 	}
+
+	@Override
+	public UPrivada obtenerUprivadaPorId(int id) {
+		// TODO Auto-generated method stub
+		return uprivadaMapper.selectUprivadaById(id);
+	}
+
+	@Override
+	public UPrivada actualizarUPrivada(UPrivada uprivada) {
+		UPrivada uprivadaResult = null;
+		
+		if (uprivadaMapper.updateUprivada(uprivada)>0) {
+			uprivadaResult = uprivada;
+		};
+ 
+		return uprivadaResult ;
+	}
+	
+	
+	
+	
 	
 
 }

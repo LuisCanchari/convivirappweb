@@ -2,42 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="../static/css/convivir.css" th:href="@{/css/convivir.css}">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}">
+<link rel="stylesheet" href="../static/css/convivir.css" th:href="@{/css/convivir.css}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPrivada</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPrivada</title>
 </head>
 
 <body>
-    <header>
-        <div class="container" id="cabecera">
-            <div class="row align-items-lg-center">
-                <div class="col-lg-8" id="logo">
-                    <img src="../static/img/logotitulo.png" th:src="@{/img/logotitulo.png}" alt="logotitulo">
-                </div>
+	<header>
+		<div class="container" id="cabecera">
+			<div class="row align-items-lg-center">
+				<div class="col-lg-8" id="logo">
+					<img src="../static/img/logotitulo.png" th:src="@{/img/logotitulo.png}" alt="logotitulo">
+				</div>
 
-                <div class="col-lg">
-                    <a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
-                </div>
-                
-                <div class="col-lg">
-                    <a name="" id=""  href="#" th:text="'Usuario: '+${uinmobiliaria.administrador.username}" role="button"></a>
-                </div>
-                
-            </div>
-            <div class="row" id="foto">
-                <img src="../static/img/fotoheader.png" th:src="@{/img/fotoheader.png}" alt="fotoheader">
-            </div>
-        </div>
-    </header>
+				<div class="col-lg">
+					<a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
+				</div>
 
-  <section>
+				<div class="col-lg">
+					<a name="" id="" href="#" th:text="'Usuario: '+${uinmobiliaria.administrador.username}" role="button"></a>
+				</div>
+
+			</div>
+			<div class="row" id="foto">
+				<img src="../static/img/fotoheader.png" th:src="@{/img/fotoheader.png}" alt="fotoheader">
+			</div>
+		</div>
+	</header>
+
+	<section>
 		<div class="container" id="contenido">
 			<div>
-				<a name="" id="" class="btn btn-success btn-lg btn-block" role="button" 
-				th:href="@{'/uinmobiliaria/'+${uinmobiliaria.id}+'/uprivada'}">Nueva Propiedad</a>
+				<a name="" id="" class="btn btn-success btn-lg btn-block" role="button" th:href="@{'/uinmobiliaria/'+${uinmobiliaria.id}+'/uprivada'}">Nueva
+					Propiedad</a>
 			</div>
 			<table class="table table-light">
 				<thead class="thead-light">
@@ -57,12 +59,16 @@
 					</tr>
 					<tr th:each="unidad: ${uinmobiliaria.listaUPrivada}">
 						<td><span th:text="${unidad.id}">1</span></td>
-						<td><span th:text="${unidad.tipoUnidad}">Tipo</span></td>
+						<td th:switch="${unidad.tipoUnidad}">
+							<span th:case="'1'">Vivienda</span> 
+							<span th:case="'2'">Departamento</span>
+							<span th:case="'3'">Departamento</span>
+							<span th:case="*">Sin dato</span>
+						</td>
 						<td><span th:text="${unidad.zona}">Zona</span></td>
 						<td><span th:text="${unidad.numero}">101</span></td>
 						<td><span th:text="${unidad.propietario}?${unidad.propietario.nombre}+' '+${unidad.propietario.primerApellido}">Juan</span></td>
-						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> 
-							<i class="fa fa-pencil-square" aria-hidden="true"></i>
+						<td><span> <a href="#" th:href="@{'/uprivada/'+${unidad.id}+'/edit'}"> <i class="fa fa-pencil-square" aria-hidden="true"></i>
 									Editar
 							</a>
 						</span></td>
@@ -72,13 +78,6 @@
 
 		</div>
 	</section>
-
-
-    <footer> </footer>
-
-
+	<footer> </footer>
 </body>
-
-
-
 </html>

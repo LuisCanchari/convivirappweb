@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Unidad Privada Nuevo</title>
+<title>Unidad Privada Editar</title>
 <!--css-->
 <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
 <link rel="stylesheet" th:href="@{/css/convivir.css}" href="../css/convivir.css">
@@ -64,7 +64,8 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user"></i></span> 
 								<input type="text" class="form-control" name="id" placeholder="Id"
-									required="required" th:field="*{id}">
+									required="required" th:field="*{id}"
+									readonly="readonly">
 							</div>
 						</div>
 

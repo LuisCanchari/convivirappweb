@@ -19,4 +19,6 @@ public interface UPrivadaMapper {
 	public List<HashMap<Integer, String>> selectMapaTipoUnidad();
 	public int insertUPrivada( UPrivada uprivada);
 	public int insertPropietario( UPrivada uprivada);
+	public UPrivada selectUprivadaById(int id);
+	public int updateUprivada(UPrivada uprivada);
 }

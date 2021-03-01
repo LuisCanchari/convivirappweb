@@ -15,5 +15,7 @@ public interface UPrivadaService {
 	public List<UPrivada> obtenerListaUPrivadaPorPropietarioId(int id);
 	public int generarNuevoId();
 	public List<HashMap<Integer, String>> obtenerMapaTipoUnidad();
-	public int registrarUPrivada(UPrivada uprivada); 
+	public UPrivada  registrarUPrivada(UPrivada uprivada); 
+	public UPrivada obtenerUprivadaPorId(int id);
+	public UPrivada  actualizarUPrivada(UPrivada uprivada);
 }

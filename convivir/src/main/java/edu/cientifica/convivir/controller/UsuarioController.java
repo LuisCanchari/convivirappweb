@@ -41,7 +41,7 @@ public class UsuarioController {
 	@Autowired
 	private AdministradorService administradorService;
 	
-	@GetMapping("/")
+	@GetMapping("/all")
 	public String obtenerListaUsuario() {
 			return "";
 	}
