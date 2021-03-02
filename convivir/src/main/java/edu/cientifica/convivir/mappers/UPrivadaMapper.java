@@ -21,4 +21,5 @@ public interface UPrivadaMapper {
 	public int insertPropietario( UPrivada uprivada);
 	public UPrivada selectUprivadaById(int id);
 	public int updateUprivada(UPrivada uprivada);
+	public UPrivada selectUprivadaByCodigo(int id);
 }

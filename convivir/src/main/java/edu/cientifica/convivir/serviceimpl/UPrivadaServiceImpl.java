@@ -76,6 +76,17 @@ public class UPrivadaServiceImpl implements UPrivadaService{
  
 		return uprivadaResult ;
 	}
+
+	@Override
+	public UPrivada obtenerUprivadaPorCodigo(int id) {
+		// TODO Auto-generated method stub
+		UPrivada uprivadResult =  null;
+		
+		uprivadResult = uprivadaMapper.selectUprivadaByCodigo(id);
+		
+		
+		return uprivadResult;
+	}
 	
 	
 	

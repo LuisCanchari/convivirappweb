@@ -18,6 +18,7 @@
 			resultMap="edu.cientifica.convivir.mappers.PropietarioMapper.propietarioResultMap" />
 	</resultMap>
 
+
 	<select id="selectListaUPrivadaByUInmobiliariaId"
 		resultMap="uprivadaResultMap" parameterType="int">
 		SELECT
@@ -129,16 +130,42 @@
 		WHERE up.id_uprivada = #{id};
 	</select>
 	<update id="updateUprivada"
-		parameterType="edu.cientifica.convivir.model.UInmobiliaria">
+		parameterType="edu.cientifica.convivir.model.UPrivada">
 		UPDATE unidadprivada
-		SET 
+		SET
 		numeracion = #{numero},
 		zona = #{zona},
 		id_tipo_unidad = #{tipoUnidad}
-		WHERE id_uprivada = #{id};
+		WHERE
+		id_uprivada = #{id};
 
 		UPDATE persona_up
 		SET id_persona = #{propietario.id}
-		WHERE id_uprivada = #{id} AND id_tipo_relacion='1'; 
+		WHERE id_uprivada = #{id} AND id_tipo_relacion='1';
 	</update>
+
+	<select id="selectUprivadaByCodigo" parameterType="int"
+		resultMap="uprivadaResultMap">
+		SELECT ui.id_uinmobiliaria, ui.nombre_corto,
+		ui.nombre_largo,
+		ui.des_direccion, ui.ubigeo, ui.latitud_map,
+		ui.longitud_map,
+		up.id_uprivada, up.id_tipo_unidad, up.numeracion,
+		up.zona,
+		p.id_persona, p.nombre, p.primer_apellido, p.segundo_apellido,
+		p.tipo_documento, p.num_documento
+		FROM unidadprivada up
+		INNER JOIN
+		unidadinmobiliaria ui
+		ON up.id_uinmobiliaria=ui.id_uinmobiliaria
+		INNER
+		JOIN persona_up pup
+		ON up.id_uprivada = pup.id_uprivada
+		AND
+		pup.id_tipo_relacion = 1
+		INNER JOIN persona p
+		ON
+		pup.id_persona=p.id_persona
+		WHERE up.id_uprivada = #{id}
+	</select>
 </mapper>

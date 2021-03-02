@@ -52,9 +52,13 @@ public class UPrivadaController {
 		return "";
 	}
 	
+		
+	
 	@GetMapping("/{id}/edit")
 	public String modificarUPrivada(@PathVariable(name ="id") int id, Model model) {
-		UPrivada uprivada =  uprivadaService.obtenerUprivadaPorId(id);
+		
+		//UPrivada uprivada =  uprivadaService.obtenerUprivadaPorId(id);
+		UPrivada uprivada = uprivadaService.obtenerUprivadaPorCodigo(id);
 	
 		
 		List<Persona> listaPersona;
