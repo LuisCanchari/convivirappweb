@@ -87,11 +87,16 @@ public class UInmobiliariaController {
 		return "uinmobiliaria_lista";
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String modificarUInmobiliaria(@PathVariable (name = "id") int id) {
+	@GetMapping("/{id}/edit")
+	public String modificarUInmobiliaria(@PathVariable (name = "id") int id, Model model) {
+		UInmobiliaria uinmobiliaria =  null;
+		uinmobiliaria = uinmobiliariaService.obtenerUInmobiliariaPorId(id);
 		
+		model.addAttribute("uinmobiliaria", uinmobiliaria);
 		return "uinmobiliaria_edit";
 	}
+	
+	
 	@GetMapping("/{id}/uprivada") //abrir formulario para insertar unidad privada
 	public String nuevoUPrivada(@PathVariable (name = "id") int id, Model model) {
 		UPrivada uprivada =  new UPrivada();
@@ -110,7 +115,14 @@ public class UInmobiliariaController {
 		model.addAttribute("listaTipoUnidad", listaTipoUnidadPrivada);
 		return "uprivada_add";
 	}
-
+	
+	@PostMapping("/update")
+		public String actualizarUInmobiliaria(@ModelAttribute("uinmobiliaria") UInmobiliaria uinmobiliaria) {
+		
+		//uinmobiliariaService.actualizarUInmobiliraria(uinmobiliaria);
+		
+			return null;
+		}
 }
 
 
