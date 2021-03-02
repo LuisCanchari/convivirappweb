@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Inmobiliaria Nuevo</title>
+<!--css-->
+<link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
+<link rel="stylesheet" th:href="@{/css/convivir.css}" href="../css/convivir.css">
+
+<!--Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!--awesome-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+</head>
+<body>
+	<header>
+		<div class="container" id="cabecera">
+			<div class="row align-items-lg-center">
+				<div class="col-lg-8" id="logo">
+					<img src="../static/img/logotitulo.png" th:src="@{/img/logotitulo.png}" alt="logotitulo">
+				</div>
+
+				<div class="col-lg">
+					<a name="" id="" class="btn btn-success btn-lg btn-block" href="#" th:href="@{/salir}" role="button">Salir</a>
+				</div>
+
+			</div>
+			<div class="row" id="foto">
+				<img src="../static/img/fotoheader.png" th:src="@{/img/fotoheader.png}" alt="fotoheader">
+			</div>
+		</div>
+	</header>
+
+	<section>
+		<div class="container" id="contenido">
+			<div class="row">
+				<div class="col-lg-4 ">
+
+					<img src="../static/img/registro.jpg" th:src="@{/img/registro.jpg}" alt="foto registro" class="img-fluid">
+
+				</div>
+				
+				<div class=col-lg-8>
+				<h3>Datos de la Inmobiliaria</h3>
+
+					<form action="#" th:action="@{/uinmobiliaria/update}" method="post" th:object="${uinmobiliaria}">
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="nombrecorto"
+									placeholder="Nombre Corto" required="required" th:field="*{nombreCorto}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="nombrelargo"
+									placeholder="Nombre Largo" required="required" th:field="*{nombreLargo}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="direccion"
+									placeholder="Direccion" required="required" th:field="*{direccion}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span>
+								 <input type="text" class="form-control" name="codigoubigeo"
+									placeholder="Codigo Ubigeo" required="required" th:field="*{codigoUbigeo}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="mapalatitud"
+									placeholder="Mapa Latitud" required="required" th:field="*{mapaLatitud}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-home"></i></span> 
+								<input type="text" class="form-control" name="mapalongitud"
+									placeholder="Mapa Longitud" required="required" th:field="*{mapaLongitud}">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" name="administrador" th:field="*{administrador.id}">
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<div class="input-group">
+								<input type="submit" class="btn btn-success btn-block" value="Grabar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer> </footer>
+</body>
+</html>
